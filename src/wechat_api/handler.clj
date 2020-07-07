@@ -8,14 +8,15 @@
             [wechat-api.wechat-server :as weixin]
     ;[wechat-api.schema :refer :all]
             [schema.core :as s]
+            [wechat-api.schema :as schema]
             )
   )
 
-(s/defschema Response
-  {:isSuccess s/Bool
-   :errcode s/Int
-   :errmsg s/Str
-   :result {s/Keyword s/Any}})
+;(s/defschema Response
+;  {:isSuccess s/Bool
+;   :errcode s/Int
+;   :errmsg s/Str
+;   :result {s/Keyword s/Any}})
 
 (def app
   (api
@@ -29,7 +30,7 @@
     (context "/api" []
       :tags ["api"]
       (GET "/wechat-info" []
-        :return Response
+        :return schema/Response
         ;:tag ["wexin"]
         :query-params [code :- String, state :- String]
         :summary "weixin redirect_api"
